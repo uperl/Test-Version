@@ -2,6 +2,9 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+1.05      2015-05-05
+  - New maintainer (PLICEASE) updated meta
+
 1.004001  2014-10-20
 	- improved consistent check diagnostics GH #11 (SZABGAB)
 
