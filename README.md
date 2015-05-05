@@ -129,9 +129,10 @@ feature.
 - Mike Doherty <doherty@cs.dal.ca>
 - particle <particle@cpan.org>
 
-# AUTHOR
+# AUTHORS
 
-Caleb Cushing <xenoterracide@gmail.com>
+- Graham Ollis <plicease@cpan.org>
+- Caleb Cushing <xenoterracide@gmail.com>
 
 # COPYRIGHT AND LICENSE
 
