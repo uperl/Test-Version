@@ -104,6 +104,27 @@ Check if every module has the same version number.
 if you have at least [Module::Metadata](https://metacpan.org/pod/Module::Metadata) v`1.000020` Test::Version will by
 default skip any files not considered [is\_indexable](https://metacpan.org/pod/Module::Metadata#is_indexable)
 
+## filename\_match
+
+        use Test::Version 2.0 { filename_match => [qr{Foo/Bar.pm$}] };
+
+Only test files that match the given pattern.  Pattern may be a list of
+strings, regular expressions or code references.  The filename will match
+if it matches one or more patterns.
+
+- string
+
+    The file matches if it matches the pattern string exactly.
+
+- regular expression
+
+    The file matches if it matches the regular expression.
+
+- code reference
+
+    The file matches if the code reference returns a true value.  The filename
+    is passed in as the only argument to the code reference.
+
 # SEE ALSO
 
 The goal is to have the functionality of all of these.

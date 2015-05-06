@@ -39,9 +39,18 @@ sub import { ## no critic qw( Subroutines::RequireArgUnpacking Subroutines::Requ
 		;
 
 	$cfg->{consistent}
-		= defined $cfg->{consistent}           ? $cfg->{consistent}
+		= defined $cfg->{consistent}          ? $cfg->{consistent}
 		:                                       0
 		;
+
+	$cfg->{filename_match}
+	        = defined $cfg->{filename_match}      ? $cfg->{filename_match}
+	        :                                       []
+	        ;
+
+	unless(ref($cfg->{filename_match}) eq 'ARRAY') {
+	        $cfg->{filename_match} = [$cfg->{filename_match}];
+	}
 
 	my $mmv = version->parse( $Module::Metadata::VERSION );
 	my $rec = version->parse( '1.000020'  );
@@ -73,6 +82,31 @@ sub version_ok {
 		$test->skip( "$file not indexable" );
 		return 0 if ! $info->is_indexable;
 	}
+
+        if(@{ $cfg->{filename_match} } > 0) {
+                my $match = 0;
+                foreach my $pattern (@{ $cfg->{filename_match} }) {
+
+                        if(ref($pattern) eq 'Regexp') {
+                                $match = 1 if $file =~ $pattern;
+                        }
+
+                        elsif(ref($pattern) eq 'CODE') {
+                                $match = 1 if $pattern->($file);
+                        }
+
+                        else {
+                                $match = 1 if $file eq $pattern;
+                        }
+
+                        last if $match;
+                }
+                unless ($match) {
+                        $test->skip( "$file does not match filename_match" );
+                        return 0;
+                }
+        }
+
 	my $version = $info->version;
 
 	$versions{$file} = $version;
@@ -270,6 +304,31 @@ Check if every module has the same version number.
 
 if you have at least L<Module::Metadata> vC<1.000020> Test::Version will by
 default skip any files not considered L<is_indexable|Module::Metadata/is_indexable>
+
+=setting filename_match
+
+        use Test::Version 2.0 { filename_match => [qr{Foo/Bar.pm$}] };
+
+Only test files that match the given pattern.  Pattern may be a list of
+strings, regular expressions or code references.  The filename will match
+if it matches one or more patterns.
+
+=over 4
+
+=item string
+
+The file matches if it matches the pattern string exactly.
+
+=item regular expression
+
+The file matches if it matches the regular expression.
+
+=item code reference
+
+The file matches if the code reference returns a true value.  The filename
+is passed in as the only argument to the code reference.
+
+=back
 
 =head1 SEE ALSO
 

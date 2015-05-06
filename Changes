@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+  - Added filename_match setting
 
 1.05      2015-05-05
   - New maintainer (PLICEASE) updated meta
