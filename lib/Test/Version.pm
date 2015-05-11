@@ -344,4 +344,12 @@ The goal is to have the functionality of all of these.
 
 =back
 
+If you are using L<Dist::Zilla> there is a plugin
+
+=over
+
+=item L<Dist::Zilla::Plugin::Test::Version>
+
+=back
+
 =cut

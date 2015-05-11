@@ -133,6 +133,10 @@ The goal is to have the functionality of all of these.
 - [Test::ConsistentVersion](https://metacpan.org/pod/Test::ConsistentVersion)
 - [Test::GreaterVersion](https://metacpan.org/pod/Test::GreaterVersion)
 
+If you are using [Dist::Zilla](https://metacpan.org/pod/Dist::Zilla) there is a plugin
+
+- [Dist::Zilla::Plugin::Test::Version](https://metacpan.org/pod/Dist::Zilla::Plugin::Test::Version)
+
 # BUGS
 
 Please report any bugs or feature requests on the bugtracker website
@@ -146,6 +150,7 @@ feature.
 
 - Gabor Szabo <gabor@szabgab.com>
 - Graham Ollis <perl@wdlabs.com>
+- Karen Etheridge <ether@cpan.org>
 - Michael G. Schwern <schwern@pobox.com>
 - Mike Doherty <doherty@cs.dal.ca>
 - particle <particle@cpan.org>
