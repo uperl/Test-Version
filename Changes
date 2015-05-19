@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+2.01      2015-05-19
   - Fix failing test in t/all-generated.t
 
 2.00      2015-05-06
