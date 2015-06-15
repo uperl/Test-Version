@@ -47,7 +47,7 @@ sub import { ## no critic qw( Subroutines::RequireArgUnpacking Subroutines::Requ
     = defined $cfg->{filename_match}      ? $cfg->{filename_match}
     :                                       []
     ;
-  
+
   $cfg->{multiple}
     = defined $cfg->{multiple}            ? $cfg->{multiple}
     :                                       0
@@ -62,6 +62,9 @@ sub import { ## no critic qw( Subroutines::RequireArgUnpacking Subroutines::Requ
   if ( $mmv >= $rec && ! defined $cfg->{ignore_unindexable} ) {
     $cfg->{ignore_unindexable} = 1;
   }
+
+  croak "Cannot enable multiple and disable has_version"
+    if $cfg->{multiple} && !$cfg->{has_version};
 
   __PACKAGE__->export_to_level( 1, @exports );
 }
@@ -83,9 +86,9 @@ sub version_ok {
   croak "'$file' doesn't exist." unless -e $file;
 
   my $info = Module::Metadata->new_from_file( $file );
-  if ( $cfg->{ignore_unindexable} ) {
+  if ( $cfg->{ignore_unindexable} && ! $info->is_indexable) {
     $test->skip( "$file not indexable" );
-    return 0 if ! $info->is_indexable;
+    return 0;
   }
 
   if(@{ $cfg->{filename_match} } > 0) {
@@ -112,59 +115,89 @@ sub version_ok {
     }
   }
 
-  my $version = $info->version;
+  my $ok = 1;
+  my @diag;
+  my @packages = $cfg->{multiple} ? $info->packages_inside : ($info->name);
 
-  $versions{$file} = $version;
-
-  if (not defined $version) {
-    $consistent = 0;
+  unless(@packages) {
+    $ok = 0;
+    push @diag, "No packages found in '$file'";
   }
 
-  if ( not $version and not $cfg->{has_version} ) {
-    $test->skip( 'No version was found in "'
-      . $file
-      . '" and has_version is false'
-      )
-      ;
-
-    return 1;
-  } else {
-    $version_counter++;
+  unless( (caller(1))[3] eq 'Test::Version::version_all_ok') {
+    $consistent = 1;
+    $version_number  = undef;
   }
 
-  unless ( $version ) {
-    $test->ok( 0 , $name );
-    $test->diag( "No version was found in '$file'." );
-    return 0;
-  }
+  foreach my $package (@packages) {
 
-  unless (defined $version_number) {
-    $version_number = $version;
-  }
-  if ($version ne $version_number) {
-    $consistent = 0;
-  }
+    my $version = $info->version($package);
 
-  unless ( is_lax( $version ) ) {
-    $test->ok( 0, $name );
-    $test->diag( "The version '$version' found in '$file' is invalid." );
-    return 0;
-  }
+    $versions{$file}->{$package} = $version;
 
-  if ( $cfg->{is_strict} ) {
-    unless ( is_strict( $version ) ) {
-      $test->ok( 0, $name );
-      $test->diag( "The version '$version' found in '$file' is not strict." );
-      return 0;
+    if (not defined $version) {
+      $consistent = 0;
+    }
+
+    if ( not $version and not $cfg->{has_version} ) {
+      $test->skip( 'No version was found in "'
+        . $file
+        . '" and has_version is false'
+        )
+        ;
+
+      return 1;
+    } else {
+      $version_counter++;
+    }
+
+    unless ( $version ) {
+      $ok = 0;
+      push @diag, "No version was found in '$file' ($package).";
+      next;
+    }
+
+    unless (defined $version_number) {
+      $version_number = $version;
+    }
+    if ($version ne $version_number) {
+      $consistent = 0;
+    }
+
+    unless ( is_lax( $version ) ) {
+      $ok = 0;
+      push @diag, "The version '$version' found in '$file' ($package) is invalid.";
+      next;
+    }
+
+    if ( $cfg->{is_strict} ) {
+      unless ( is_strict( $version ) ) {
+        $ok = 0;
+        push @diag, "The version '$version' found in '$file' ($package) is not strict.";
+        next;
+      }
     }
   }
 
-  $test->ok( 1, $name );
-  return 1;
+  unless( (caller(1))[3] eq 'Test::Version::version_all_ok') {
+    if($ok && ! $consistent && $cfg->{consistent}) {
+      $ok = 0;
+      push @diag, "The versions found in '$file' are inconsistent.";
+    }
+  }
+
+  $test->ok( $ok, $name );
+  $test->diag($_) for @diag;
+  return $ok;
 }
 
 sub version_all_ok {
   my ( $dir, $name ) = @_;
+
+  $version_counter = 0;
+  $version_number  = undef;
+  $consistent      = 1;
+  %versions        = ();
 
   $dir
     = defined $dir ? $dir
@@ -188,8 +221,11 @@ sub version_all_ok {
   if ($cfg->{consistent} and not $consistent) {
     $test->ok( 0, $name );
     $test->diag('The version numbers in this distribution are not the same');
-    foreach my $file (sort { $versions{$a} cmp $versions{$b} } keys %versions) {
-      $test->diag(sprintf "%10s %s", (defined $versions{$file} ? $versions{$file} : 'undef'), $file);
+    foreach my $file (sort keys %versions) {
+      foreach my $package (sort keys %{ $versions{$file} }) {
+        my $version = $versions{$file}->{$package};
+        $test->diag(sprintf "%10s %s (%s)", defined $version ? $version : 'undef', $file, $package);
+      }
     }
     return;
   }
@@ -317,6 +353,12 @@ default skip any files not considered L<is_indexable|Module::Metadata/is_indexab
 Only test files that match the given pattern.  Pattern may be a list of
 strings, regular expressions or code references.  The filename will match
 if it matches one or more patterns.
+
+=setting multiple
+
+  use Test::Version 2.02 { multiple => 1 };
+
+Test each version for each package if multiple packages are found in a file.
 
 =over 4
 

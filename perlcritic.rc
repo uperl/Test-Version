@@ -1,4 +1,4 @@
 severity = 3
 verbose  = 9
 [Subroutines::ProhibitExcessComplexity]
-max_mccabe = 30
+max_mccabe = 40

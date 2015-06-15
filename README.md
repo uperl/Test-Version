@@ -8,17 +8,17 @@ version 2.01
 
 # SYNOPSIS
 
-        use Test::More;
-        use Test::Version 1.001001 qw( version_all_ok ), {
-                        is_strict   => 0,
-                        has_version => 1,
-                        consistent  => 1,
-                };
+    use Test::More;
+    use Test::Version 1.001001 qw( version_all_ok ), {
+        is_strict   => 0,
+        has_version => 1,
+        consistent  => 1,
+      };
 
-        # test blib or lib by default
-        version_all_ok();
+    # test blib or lib by default
+    version_all_ok();
 
-        done_testing;
+    done_testing;
 
 # DESCRIPTION
 
@@ -41,18 +41,18 @@ Current feature list:
     parser. All of the following formats are acceptable for dotted-decimal formats
     strings:_
 
-            v1.2
-            1.2345.6
-            v1.23_4
-            1.2345
-            1.2345_01
+        v1.2
+        1.2345.6
+        v1.23_4
+        1.2345
+        1.2345_01
 
     _If you want to limit yourself to a much more narrow definition of what a
     version string constitutes, is\_strict() is limited to version strings like
     the following list:_
 
-            v1.234.5
-            2.3456
+        v1.234.5
+        2.3456
 
     you can cause your tests to fail if not strict by setting [is\_strict](#is_strict) to
     `1`
@@ -61,14 +61,14 @@ Current feature list:
 
 ## version\_ok
 
-        version_ok( $filename, [ $name ] );
+    version_ok( $filename, [ $name ] );
 
 Test a single `.pm` file by passing a path to the function. Checks if the
 module has a version, and that it is valid with `is_lax`.
 
 ## version\_all\_ok
 
-        version_all_ok( [ $directory, [ $name ]] );
+    version_all_ok( [ $directory, [ $name ]] );
 
 Test all modules in a directory with `version_ok`. By default it will check
 `blib` or `lib` if you haven't passed it a directory.
@@ -77,7 +77,7 @@ Test all modules in a directory with `version_ok`. By default it will check
 
 ## has\_version
 
-        use Test::Version qw( version_all_ok ), { has_version => 0 };
+    use Test::Version qw( version_all_ok ), { has_version => 0 };
 
 Allows disabling whether a module has to have a version. If set to 0
 version tests will be skipped in any module where no version is found.
@@ -86,31 +86,37 @@ really doesn't make sense to use with just [version\_ok](#version_ok)
 
 ## is\_strict
 
-        use Test::Version { is_strict => 1 };
+    use Test::Version { is_strict => 1 };
 
 this allows enabling of [version](https://metacpan.org/pod/version)s `is_strict` checks to ensure that your
 version is strict.
 
 ## consistent
 
-        use Test::Version { consistent => 1 };
+    use Test::Version { consistent => 1 };
 
 Check if every module has the same version number.
 
 ## ignore\_unindexable
 
-        use Test::Version { ignore_unindexable => 0};
+    use Test::Version { ignore_unindexable => 0};
 
 if you have at least [Module::Metadata](https://metacpan.org/pod/Module::Metadata) v`1.000020` Test::Version will by
 default skip any files not considered [is\_indexable](https://metacpan.org/pod/Module::Metadata#is_indexable)
 
 ## filename\_match
 
-        use Test::Version 2.0 { filename_match => [qr{Foo/Bar.pm$}] };
+    use Test::Version 2.0 { filename_match => [qr{Foo/Bar.pm$}] };
 
 Only test files that match the given pattern.  Pattern may be a list of
 strings, regular expressions or code references.  The filename will match
 if it matches one or more patterns.
+
+## multiple
+
+    use Test::Version 2.02 { multiple => 1 };
+
+Test each version for each package if multiple packages are found in a file.
 
 - string
 

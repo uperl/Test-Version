@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+  - Added 'multiple' option to check each version inside a .pm file
+    with multiple packages.
 
 2.01      2015-05-19
   - Fix failing test in t/all-generated.t

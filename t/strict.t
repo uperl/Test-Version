@@ -17,7 +17,7 @@ check_test(
 	{
 		ok => 0,
 		name => q[check version in 'corpus/not_strict/NotStrict.pm'],
-		diag => qq[The version '0.1.0' found in 'corpus/not_strict/NotStrict.pm' is not strict.],
+		diag => qq[The version '0.1.0' found in 'corpus/not_strict/NotStrict.pm' (NotStrict) is not strict.],
 	},
 );
 
