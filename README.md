@@ -155,7 +155,6 @@ feature.
 # CONTRIBUTORS
 
 - Gabor Szabo <gabor@szabgab.com>
-- Graham Ollis <perl@wdlabs.com>
 - Karen Etheridge <ether@cpan.org>
 - Michael G. Schwern <schwern@pobox.com>
 - Mike Doherty <doherty@cs.dal.ca>
