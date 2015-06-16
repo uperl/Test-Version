@@ -120,7 +120,7 @@ sub version_ok {
     $consistent = 1;
     $version_number  = undef;
   }
-  
+
   unless($cfg->{has_version}) {
     @packages = grep { $info->version($_) } @packages;
     unless(@packages) {
