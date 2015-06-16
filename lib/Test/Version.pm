@@ -351,12 +351,6 @@ Only test files that match the given pattern.  Pattern may be a list of
 strings, regular expressions or code references.  The filename will match
 if it matches one or more patterns.
 
-=setting multiple
-
-  use Test::Version 2.02 { multiple => 1 };
-
-Test each version for each package if multiple packages are found in a file.
-
 =over 4
 
 =item string
@@ -373,6 +367,12 @@ The file matches if the code reference returns a true value.  The filename
 is passed in as the only argument to the code reference.
 
 =back
+
+=setting multiple
+
+  use Test::Version 2.02 { multiple => 1 };
+
+Test each version for each package if multiple packages are found in a file.
 
 =head1 SEE ALSO
 
