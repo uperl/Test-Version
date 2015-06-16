@@ -63,9 +63,6 @@ sub import { ## no critic qw( Subroutines::RequireArgUnpacking Subroutines::Requ
     $cfg->{ignore_unindexable} = 1;
   }
 
-  croak "Cannot enable multiple and disable has_version"
-    if $cfg->{multiple} && !$cfg->{has_version};
-
   __PACKAGE__->export_to_level( 1, @exports );
 }
 
@@ -119,14 +116,24 @@ sub version_ok {
   my @diag;
   my @packages = $cfg->{multiple} ? $info->packages_inside : ($info->name);
 
-  unless(@packages) {
-    $ok = 0;
-    push @diag, "No packages found in '$file'";
-  }
-
   unless( (caller(1))[3] eq 'Test::Version::version_all_ok') {
     $consistent = 1;
     $version_number  = undef;
+  }
+  
+  unless($cfg->{has_version}) {
+    @packages = grep { $info->version($_) } @packages;
+    unless(@packages) {
+      $test->skip(qq{No versions were found in "$file" and has_version is false});
+      $consistent = 0;
+      $versions{$file}->{$info->name} = undef;
+      return 1;
+    }
+  }
+
+  unless(@packages) {
+    $ok = 0;
+    push @diag, "No packages found in '$file'";
   }
 
   foreach my $package (@packages) {
@@ -139,17 +146,7 @@ sub version_ok {
       $consistent = 0;
     }
 
-    if ( not $version and not $cfg->{has_version} ) {
-      $test->skip( 'No version was found in "'
-        . $file
-        . '" and has_version is false'
-        )
-        ;
-
-      return 1;
-    } else {
-      $version_counter++;
-    }
+    $version_counter++;
 
     unless ( $version ) {
       $ok = 0;
