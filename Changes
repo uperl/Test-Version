@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+2.01_01   2015-06-15
   - Added 'multiple' option to check each version inside a .pm file
     with multiple packages.
 

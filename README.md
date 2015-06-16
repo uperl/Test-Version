@@ -4,7 +4,7 @@ Test::Version - Check to see that version's in modules are sane
 
 # VERSION
 
-version 2.01
+version 2.01\_01
 
 # SYNOPSIS
 
