@@ -2,6 +2,9 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+2.02      2015-06-17
+  - Production release identical to 2.01_01 release
+
 2.01_01   2015-06-15
   - Added 'multiple' option to check each version inside a .pm file
     with multiple packages.
