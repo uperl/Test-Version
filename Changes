@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+  - Don't check caller() to determine whether version_ok was called from
+    all_version_ok GH #5 (DROLSKY)
 
 2.02      2015-06-17
   - Production release identical to 2.01_01 release

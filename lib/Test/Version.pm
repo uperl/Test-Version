@@ -73,6 +73,8 @@ my %versions;
 
 my $test = Test::Builder->new;
 
+our $_IN_VERSION_ALL_OK = 0;
+
 sub version_ok {
   my ( $file, $name ) = @_;
   $file ||= '';
@@ -116,7 +118,7 @@ sub version_ok {
   my @diag;
   my @packages = $cfg->{multiple} ? $info->packages_inside : ($info->name);
 
-  unless( (caller(1))[3] eq 'Test::Version::version_all_ok') {
+  unless($_IN_VERSION_ALL_OK) {
     $consistent = 1;
     $version_number  = undef;
   }
@@ -176,7 +178,7 @@ sub version_ok {
     }
   }
 
-  unless( (caller(1))[3] eq 'Test::Version::version_all_ok') {
+  unless($_IN_VERSION_ALL_OK) {
     if($ok && ! $consistent && $cfg->{consistent}) {
       $ok = 0;
       push @diag, "The versions found in '$file' are inconsistent.";
@@ -211,8 +213,11 @@ sub version_all_ok {
 
   my @files = File::Find::Rule->perl_module->in( $dir );
 
-  foreach my $file ( @files ) {
-    version_ok( $file );
+  {
+    local $_IN_VERSION_ALL_OK = 1;
+    foreach my $file ( @files ) {
+      version_ok( $file );
+    }
   }
 
   if ($cfg->{consistent} and not $consistent) {
