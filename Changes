@@ -2,6 +2,9 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+2.03      2015-06-29
+  - Remove annoying warnings when version_ok called by itself GH #5 (DROLSKY)
+
 2.02      2015-06-17
   - Production release identical to 2.01_01 release
 

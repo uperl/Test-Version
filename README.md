@@ -4,7 +4,7 @@ Test::Version - Check to see that version's in modules are sane
 
 # VERSION
 
-version 2.02
+version 2.03
 
 # SYNOPSIS
 
@@ -154,6 +154,7 @@ feature.
 
 # CONTRIBUTORS
 
+- Dave Rolsky <autarch@urth.org>
 - Gabor Szabo <gabor@szabgab.com>
 - Karen Etheridge <ether@cpan.org>
 - Michael G. Schwern <schwern@pobox.com>
