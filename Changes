@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+  - Don't check caller() to determine whether version_ok was called from
+    all_version_ok GH #5 (DROLSKY)
 
 2.03      2015-06-29
   - Remove annoying warnings when version_ok called by itself GH #5 (DROLSKY)
