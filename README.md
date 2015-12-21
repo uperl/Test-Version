@@ -1,10 +1,6 @@
-# NAME
+# Test::Version [![Build Status](https://secure.travis-ci.org/plicease/Test-Version.png)](http://travis-ci.org/plicease/Test-Version)
 
-Test::Version - Check to see that version's in modules are sane
-
-# VERSION
-
-version 2.03
+Check to see that version's in modules are sane
 
 # SYNOPSIS
 
@@ -154,17 +150,17 @@ feature.
 
 # CONTRIBUTORS
 
-- Dave Rolsky <autarch@urth.org>
-- Gabor Szabo <gabor@szabgab.com>
-- Karen Etheridge <ether@cpan.org>
-- Michael G. Schwern <schwern@pobox.com>
-- Mike Doherty <doherty@cs.dal.ca>
-- particle <particle@cpan.org>
+- Dave Rolsky &lt;autarch@urth.org>
+- Gabor Szabo &lt;gabor@szabgab.com>
+- Karen Etheridge &lt;ether@cpan.org>
+- Michael G. Schwern &lt;schwern@pobox.com>
+- Mike Doherty &lt;doherty@cs.dal.ca>
+- particle &lt;particle@cpan.org>
 
 # AUTHORS
 
-- Graham Ollis <plicease@cpan.org>
-- Caleb Cushing <xenoterracide@gmail.com>
+- Graham Ollis &lt;plicease@cpan.org>
+- Caleb Cushing &lt;xenoterracide@gmail.com>
 
 # COPYRIGHT AND LICENSE
 
