@@ -150,21 +150,21 @@ feature.
 
 # CONTRIBUTORS
 
-- Dave Rolsky &lt;autarch@urth.org>
-- Gabor Szabo &lt;gabor@szabgab.com>
-- Karen Etheridge &lt;ether@cpan.org>
-- Michael G. Schwern &lt;schwern@pobox.com>
-- Mike Doherty &lt;doherty@cs.dal.ca>
-- particle &lt;particle@cpan.org>
+- Dave Rolsky <autarch@urth.org>
+- Gabor Szabo <gabor@szabgab.com>
+- Karen Etheridge <ether@cpan.org>
+- Michael G. Schwern <schwern@pobox.com>
+- Mike Doherty <doherty@cs.dal.ca>
+- particle <particle@cpan.org>
 
 # AUTHORS
 
-- Graham Ollis &lt;plicease@cpan.org>
-- Caleb Cushing &lt;xenoterracide@gmail.com>
+- Graham Ollis <plicease@cpan.org>
+- Caleb Cushing <xenoterracide@gmail.com>
 
 # COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2015 by Caleb Cushing.
+This software is Copyright (c) 2016 by Caleb Cushing.
 
 This is free software, licensed under:
 

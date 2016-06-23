@@ -2,6 +2,10 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+2.04      2016-06-22
+  - Bump requirement for a newer version of Module::Metadata
+    (the version that comes with Perl 5.14 cannot handle package block syntax)
+
 2.03      2015-06-29
   - Remove annoying warnings when version_ok called by itself GH #5 (DROLSKY)
 
