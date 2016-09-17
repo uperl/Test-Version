@@ -11,7 +11,7 @@ use Test::Builder;
 use version 0.86 qw( is_lax is_strict );
 use File::Find::Rule::Perl;
 use Test::More;
-use Module::Metadata 1.000019;
+use Module::Metadata 1.000020;
 
 our @EXPORT = qw( version_all_ok ); ## no critic (Modules::ProhibitAutomaticExportation)
 our @EXPORT_OK = qw( version_ok );

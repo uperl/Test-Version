@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+  - Bump requirement for newer version of Module::Metadata (again)
+    Required for ignore_unindexable
 
 2.04      2016-06-22
   - Bump requirement for a newer version of Module::Metadata
