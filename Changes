@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+2.06_01   2017-11-12
   - Support running in taint mode (Damyan Ivanov++)
 
 2.05      2016-09-17
