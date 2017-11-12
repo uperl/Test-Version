@@ -142,7 +142,7 @@ If you are using [Dist::Zilla](https://metacpan.org/pod/Dist::Zilla) there is a 
 # BUGS
 
 Please report any bugs or feature requests on the bugtracker website
-https://github.com/plicease/test-version/issues
+[https://github.com/plicease/test-version/issues](https://github.com/plicease/test-version/issues)
 
 When submitting a bug or request, please include a test-file or a
 patch to an existing test-file that illustrates the bug or desired
@@ -150,6 +150,7 @@ feature.
 
 # CONTRIBUTORS
 
+- Damyan Ivanov <dmn@debian.org>
 - Dave Rolsky <autarch@urth.org>
 - Gabor Szabo <gabor@szabgab.com>
 - Karen Etheridge <ether@cpan.org>
@@ -164,7 +165,7 @@ feature.
 
 # COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2016 by Caleb Cushing.
+This software is Copyright (c) 2017 by Caleb Cushing.
 
 This is free software, licensed under:
 
