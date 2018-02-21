@@ -213,7 +213,7 @@ sub version_all_ok {
 
   my @files = File::Find::Rule->perl_module->extras({
     untaint => 1,
-    ($^O eq 'MSWin32' ? (untaint_pattern => qr|^(([a-zA-Z]:)?[-+@\w./]+)$|) : ()),
+    ($^O eq 'MSWin32' ? (untaint_pattern => qr|^(([a-zA-Z]:)?[-+@\w./]+)$|x) : ()),
   })->in($dir);
 
   {
