@@ -165,7 +165,7 @@ feature.
 
 # COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2017 by Caleb Cushing.
+This software is Copyright (c) 2018 by Caleb Cushing.
 
 This is free software, licensed under:
 
