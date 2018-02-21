@@ -211,7 +211,10 @@ sub version_all_ok {
 
   $name ||= "all modules in $dir have valid versions";
 
-  my @files = File::Find::Rule->perl_module->extras( { untaint => 1 } )->in($dir);
+  my @files = File::Find::Rule->perl_module->extras({
+    untaint => 1,
+    ($^O eq 'MSWin32' ? (untaint_pattern => qr|^(([a-zA-Z]:)?[-+@\w./]+)$|) : ()),
+  })->in($dir);
 
   {
     local $_IN_VERSION_ALL_OK = 1;
