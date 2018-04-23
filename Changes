@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+  - Diagnostic release
 
 2.07      2018-02-21
   - Fix tests to work with -T on Strawberry / MSWin32 Perl

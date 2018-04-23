@@ -74,6 +74,11 @@ my %versions;
 my $test = Test::Builder->new;
 
 our $_IN_VERSION_ALL_OK = 0;
+our %FILE_FIND_RULE_EXTRAS = (
+  untaint => 1,
+  ($^O eq 'MSWin32' ? (untaint_pattern => qr|^(([a-zA-Z]:)?[-+@\w./]+)$|x) : ()),
+);
+
 
 sub version_ok {
   my ( $file, $name ) = @_;
@@ -211,10 +216,7 @@ sub version_all_ok {
 
   $name ||= "all modules in $dir have valid versions";
 
-  my @files = File::Find::Rule->perl_module->extras({
-    untaint => 1,
-    ($^O eq 'MSWin32' ? (untaint_pattern => qr|^(([a-zA-Z]:)?[-+@\w./]+)$|x) : ()),
-  })->in($dir);
+  my @files = File::Find::Rule->perl_module->extras(\%FILE_FIND_RULE_EXTRAS)->in($dir);
 
   {
     local $_IN_VERSION_ALL_OK = 1;
