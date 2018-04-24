@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+  - Handle common special characters on Windows in taint mode
 
 2.08_01   2018-04-23
   - Diagnostic release
