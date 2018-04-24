@@ -41,9 +41,7 @@ foreach my $name (sort keys %tests)
     is $@, '';
 
     chdir $save;
-  
   };
 }
 
 done_testing;
-
