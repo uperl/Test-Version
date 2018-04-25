@@ -2,6 +2,9 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+2.09      2018-04-25
+  - Production release identical to 2.08_02 release
+
 2.08_02   2018-04-24
   - Handle common special characters on Windows in taint mode
 
