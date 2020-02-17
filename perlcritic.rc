@@ -2,3 +2,5 @@ severity = 3
 verbose  = 9
 [Subroutines::ProhibitExcessComplexity]
 max_mccabe = 40
+[ErrorHandling::RequireUseOfExceptions]
+severity = 1
