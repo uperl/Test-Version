@@ -2,13 +2,14 @@ package Test::Version;
 use 5.006;
 use strict;
 use warnings;
-use Carp;
+use Carp qw( croak );
 
 # VERSION
 
 use parent 'Exporter';
 use Test::Builder;
 use version 0.86 qw( is_lax is_strict );
+use File::Find::Rule;
 use File::Find::Rule::Perl;
 use Test::More;
 use Module::Metadata 1.000020;
