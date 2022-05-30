@@ -1,4 +1,4 @@
-# Test::Version ![linux](https://github.com/uperl/Test-Version/workflows/linux/badge.svg) ![macos](https://github.com/uperl/Test-Version/workflows/macos/badge.svg) ![windows](https://github.com/uperl/Test-Version/workflows/windows/badge.svg) ![cygwin](https://github.com/uperl/Test-Version/workflows/cygwin/badge.svg) ![msys2-mingw](https://github.com/uperl/Test-Version/workflows/msys2-mingw/badge.svg)
+# Test::Version ![linux](https://github.com/uperl/Test-Version/workflows/linux/badge.svg) ![macos](https://github.com/uperl/Test-Version/workflows/macos/badge.svg) ![windows](https://github.com/uperl/Test-Version/workflows/windows/badge.svg) ![cygwin](https://github.com/uperl/Test-Version/workflows/cygwin/badge.svg)
 
 Check to see that version's in modules are sane
 
@@ -187,7 +187,7 @@ feature.
 
 # COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2021 by Caleb Cushing.
+This software is Copyright (c) 2022 by Caleb Cushing.
 
 This is free software, licensed under:
 
